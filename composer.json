@@ -1,0 +1,27 @@
+{
+    "name": "netflying/airwallex",
+    "description": "netflying airwallex sdk",
+    "keywords": ["php-sdk","netflying-sdk"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "darkghost",
+            "homepage": "https://github.com/aitasty/netflying"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "netflying/payment": "1.2.2"
+    },
+    "autoload":{
+        "psr-4":{
+            "Netflying\\Airwallex\\":"src/",
+            "Netflying\\AirwallexTest\\":"test/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "Netflying\\AirwallexTest\\":"test/"
+        }
+    }
+}
