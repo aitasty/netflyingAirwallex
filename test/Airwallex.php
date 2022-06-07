@@ -3,7 +3,7 @@
  * @Author: He.Bin 
  * @Date: 2022-05-31 13:55:07 
  * @Last Modified by: He.Bin
- * @Last Modified time: 2022-06-05 00:41:41
+ * @Last Modified time: 2022-06-07 10:44:57
  */
 
 namespace Netflying\AirwallexTest;
@@ -37,7 +37,7 @@ class Airwallex
      *
      * @param string $url 站点回调通知相对路径
      */
-    public function __construct($url='')
+    public function __construct($url = '')
     {
         $this->url = $url;
     }
@@ -50,9 +50,9 @@ class Airwallex
     public function setMerchant(array $realMerchant = [])
     {
         $url = $this->url . '?type=' . $this->type;
-        $returnUrl = $url .'&act=return_url&async=0&sn={$sn}';
-        $successUrl = $url.'&act=success_url&async=0&sn={$sn}';
-        $cancelUrl = $url.'&act=cancel_url&async=0&sn={$sn}';
+        $returnUrl = $url . '&act=return_url&async=0&sn={$sn}';
+        $successUrl = $url . '&act=success_url&async=0&sn={$sn}';
+        $cancelUrl = $url . '&act=cancel_url&async=0&sn={$sn}';
         $merchant = [
             'type' => $this->type,
             'is_test' => 1,
@@ -73,7 +73,7 @@ class Airwallex
                 'cancel_url' => $cancelUrl,
             ]
         ];
-        $merchant = Utils::arrayMerge($merchant,$realMerchant);
+        $merchant = Utils::arrayMerge($merchant, $realMerchant);
         $this->merchant = $merchant;
         return $this;
     }
@@ -116,11 +116,9 @@ class Airwallex
         $Order->setCreditCard($this->creditCardSsl);
         $Log = new Log;
         $Merchant = new Merchant($this->merchant);
-        $class = "Netflying\\Airwallex\\lib\\".$this->type;
+        $class = "Netflying\\" . $this->type . "\\lib\\" . $this->type;
         $Payment = new $class($Merchant);
         $redirect = $Payment->log($Log)->purchase($Order);
         return $redirect;
     }
-
-
 }
